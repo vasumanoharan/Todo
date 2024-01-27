@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Login from './Login';
+import Signup from './signup';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Success from './sucess';
+import Apptodo from './App todo';
+
+function App(prop) {
+  var [users, setUsers] = useState([
+    {
+      uname: 'vasu',
+      upswd: '123'
+    }
+  ])
+  return (
+    <div>
+      <BrowserRouter>
+      <h1>welcome</h1>
+        <Routes>
+          <Route path='/' element={<Login users={users} setUsers={setUsers} />}></Route>
+          <Route path='/signup' element={<Signup users={users} setUsers={setUsers}  />}></Route>
+          <Route path='/success' element={<Success />}></Route>
+          <Route path='/apptodo' element={<Apptodo></Apptodo>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App />
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
